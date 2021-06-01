@@ -47,18 +47,23 @@ def get_fields():
                     # Organizing tables to be appended to the nested dictionary
                     for value in range(len(row.findAll('td'))):
                         if value == 0:
-                            fields_dict[field_name]['sub_fields'][i]['field_name'] = row.findAll('td')[value].text
+                            fields_dict[field_name]['sub_fields'][i]['field_name'] = row.findAll('td')[
+                                value].text
                         elif value == 1:
-                            fields_dict[field_name]['sub_fields'][i]['description'] = row.findAll('td')[value].text
+                            fields_dict[field_name]['sub_fields'][i]['description'] = row.findAll('td')[
+                                value].text
                         elif value == 2:
-                            fields_dict[field_name]['sub_fields'][i]['type'] = row.findAll('td')[value].text
+                            fields_dict[field_name]['sub_fields'][i]['type'] = row.findAll('td')[
+                                value].text
                         elif value == 3:
-                            fields_dict[field_name]['sub_fields'][i]['versions'] = row.findAll('td')[value].text
-                i+=1
+                            fields_dict[field_name]['sub_fields'][i]['versions'] = row.findAll('td')[
+                                value].text
+                i += 1
     except:
         print('An error has occured while fetching the fieldnames, only a portion will be written to the output file')
     finally:
         return fields_dict
+
 
 def writer(file):
     if file.endswith('.json'):
@@ -91,9 +96,10 @@ Arguements:
                 print(help_prompt)
             elif current_arg in ('-o'):
                 if current_val.endswith('.json') or current_val.endswith('.csv'):
-                    writer(current_val) 
-                else:    
-                    print('Only files ending in .json or .csv are supported at this time')
+                    writer(current_val)
+                else:
+                    print(
+                        'Only files ending in .json or .csv are supported at this time')
     except getopt.GetoptError as err:
         print(str(err))
         print(help_prompt)
